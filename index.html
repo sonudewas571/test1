@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Permission</title>
+</head>
+<body>
+    <h2>Apni Location Share Karne ke liye "Allow" dabaye</h2>
+    <button onclick="getLocation()">Get Location</button>
+    <p id="output"></p>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                document.getElementById("output").innerHTML = "Geolocation supported nahi hai.";
+            }
+        }
+
+        function showPosition(position) {
+            document.getElementById("output").innerHTML =
+                "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        }
+
+        function showError(error) {
+            if (error.code == 1) {
+                alert("Aapne permission deny ki.");
+            }
+        }
+    </script>
+</body>
+</html>
